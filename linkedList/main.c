@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "linkedList.c"
 
 int main(int argc, char **argv)
 {
