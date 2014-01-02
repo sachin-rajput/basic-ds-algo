@@ -47,6 +47,9 @@ make run
 Run with mem-test:
 make run-memory
 
+Run with mem-test and check for errors:
+make run-check
+
 Change the input.txt to simulate different inputs.
 
 Each functions has the purpose in header files.
