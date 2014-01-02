@@ -11,3 +11,9 @@ main: linkedList.o main.o
 
 clean:
 	rm *.o main
+
+run:
+	./main input.txt
+
+run-memory:
+	valgrind ./main input.txt
