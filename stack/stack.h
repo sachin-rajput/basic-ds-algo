@@ -28,7 +28,7 @@ void stackPush(stack *s,data *d);
 /***
  * Pop's data from the top
  */
-data* stackPop(stack *s);
+void stackPop(stack *s);
 
 /***
  * Print the data from the stack
