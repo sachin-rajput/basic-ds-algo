@@ -17,7 +17,9 @@ int main(int argc, char* argv[])
 	char* file = argv[1];
 	stack *newstack = readData(file,1);
 	stackPrint(newstack);
-	stackPop(newstack);
+	data *datapopd = stackPop(newstack);
+	// do something with datapopd ...... after use free it
+	free(datapopd);
 	stackClean(newstack);
 	return 0;
 }

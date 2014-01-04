@@ -159,61 +159,69 @@ int checkEmpty(dlinklist *ll)
 /***
  * remove node from the front of the list and return the data element
  */
-void popFront(dlinklist *ll)
+data *popFront(dlinklist *ll)
 {
-	if(!checkEmpty(ll)) return;
+	if(!checkEmpty(ll)) return NULL;
+	data *returndata;
 	if(ll->head == ll->tail) {
 		node *deltemp= ll->head;
 		ll->head = NULL;
 		ll->tail = NULL;
+		returndata = createData(deltemp->dataPtr->val);
 		free(deltemp->dataPtr);
 		free(deltemp);
 	} else {
 		node* deltemp = ll->head;
 		ll->head=ll->head->next;
 		ll->head->prev = NULL;
+		returndata = createData(deltemp->dataPtr->val);
 		free(deltemp->dataPtr);
 		free(deltemp);
 	}
 #if DEBUG
 	printf(">>==============Node pop'd from front ================<<\n");
 #endif
+	return returndata;
 }
 
 /***
  * remove node from the front of the list and return the data element
  */
-void popBack(dlinklist *ll)
+data *popBack(dlinklist *ll)
 {
-	if(!checkEmpty(ll)) return;
+	if(!checkEmpty(ll)) return NULL;
+	data *returndata;
 	if(ll->head == ll->tail) {
 		node *deltemp =ll->head;
 		ll->head = NULL;
 		ll->tail = NULL;
+		returndata = createData(deltemp->dataPtr->val);
 		free(deltemp->dataPtr);
 		free(deltemp);
 	} else {
 		node *deltemp = ll->tail;
 		ll->tail = ll->tail->prev;
 		ll->tail->next = NULL;
+		returndata = createData(deltemp->dataPtr->val);
 		free(deltemp->dataPtr);
 		free(deltemp);
 	}
 #if DEBUG
 	printf(">>==============Node pop'd from back ================<<\n");
 #endif
+	return returndata;
 }
 
 /**
  * Remove from position i of the linkList
  */
-void popatPosition(dlinklist *ll,int position)
+data *popatPosition(dlinklist *ll,int position)
 {
-	if(!checkEmpty(ll)) return;
+	if(!checkEmpty(ll)) return NULL;
 	int length = listSize(ll);
 	if(position > length) {
 		printf("You entered the position out of the bound!\n");
-		return;
+		return NULL;
 	}
 	node *temp;
 	int i = 1;
@@ -234,12 +242,14 @@ void popatPosition(dlinklist *ll,int position)
 #if DEBUG
 			printf(">>==============Node pop'd at position %d ================<<\n",position);
 #endif
+			data *returndata = createData(temp->dataPtr->val);
 			free(temp->dataPtr);
 			free(temp);
-			return;
+			return returndata;
 		}
 		i++;
 	}
+	return NULL;
 }
 
 /**
@@ -247,9 +257,9 @@ void popatPosition(dlinklist *ll,int position)
  * first occurence will be deleted
  * Modification possible: delete all occurences of value
  */
-void popwithValue(dlinklist *ll,float value)
+data *popwithValue(dlinklist *ll,float value)
 {
-	if(!checkEmpty(ll)) return;
+	if(!checkEmpty(ll)) return NULL;
 	node *temp;
 	for(temp= ll->head; temp != NULL; temp=temp->next) {
 		if(temp->dataPtr->val == value) {
@@ -259,14 +269,18 @@ void popwithValue(dlinklist *ll,float value)
 #if DEBUG
 			printf(">>==============Node pop'd with value : %f ================<<\n",value);
 #endif
+			data *returndata = createData(temp->dataPtr->val);
 			free(temp->dataPtr);
 			free(temp);
 			// Modification : if delete all occurences then,
 			// comment below return and update,
 			// temp = prev->next
-			return;
+			// also change the return type to void, as we need to 
+			// delete all occurences of value we cant return one
+			return returndata;
 		}
 	}
+	return NULL;
 }
 
 /***

@@ -75,24 +75,24 @@ int checkEmpty(dlinklist *ll);
 /***
  * remove node from the front of the list and return the data element
  */
-void popFront(dlinklist *ll);
+data *popFront(dlinklist *ll);
 
 /***
  * remove node from the front of the list and return the data element
  */
-void popBack(dlinklist *ll);
+data *popBack(dlinklist *ll);
 
 /**
  * Remove from position i of the linkList
  */
-void popatPosition(dlinklist *ll,int position);
+data *popatPosition(dlinklist *ll,int position);
 
 /**
  * Remove with value from the linkList
  * first occurence will be deleted
  * Modification possible: delete all occurences of value
  */
-void popwithValue(dlinklist *ll,float value);
+data *popwithValue(dlinklist *ll,float value);
 
 /***
  * free all memory in the dlinklist

@@ -5,7 +5,7 @@
  * License : GNU GENERAL PUBLIC LICENSE
  */
 
-#include "dlinklist.h"
+#include "dlinkList.h"
 
 /***
  * We are using a dlinklist to implement the stack
@@ -26,9 +26,9 @@ stack* createStack();
 void stackPush(stack *s,data *d);
 
 /***
- * Pop's data from the top
+ * Pop's data from the top and return the data
  */
-void stackPop(stack *s);
+data *stackPop(stack *s);
 
 /***
  * Print the data from the stack

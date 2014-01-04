@@ -19,11 +19,11 @@ void stackPush(stack *s,data *d)
 }
 
 /***
- * Pop's data from the top
+ * Pop's data from the top and return the data
  */
-void stackPop(stack *s)
+data *stackPop(stack *s)
 {
-	popBack(s->ll);
+	return popBack(s->ll);
 }
 
 /***
