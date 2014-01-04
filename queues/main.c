@@ -17,7 +17,9 @@ int main(int argc, char* argv[])
 	char* file = argv[1];
 	queue *newqueue = readData(file,1);
 	queuePrint(newqueue);
-	queuePop(newqueue);
+	data *datapopd = queuePop(newqueue);
+	// do something with datapopd ...... after use free it
+	free(datapopd);
 	queueClean(newqueue);
 	return 0;
 }

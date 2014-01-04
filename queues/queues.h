@@ -10,10 +10,9 @@
 /***
  * We are using a dlinklist to implement the queue
  */
-typedef struct
-{
-  dlinklist *ll;
-}queue;
+typedef struct {
+	dlinklist *ll;
+} queue;
 
 /***
  * Creates a queue using structure containing a dlinklist
@@ -21,14 +20,14 @@ typedef struct
 queue* createQueue();
 
 /***
- * Pushes the data in the queue from top 
+ * Pushes the data in the queue from top
  */
 void queuePush(queue *s,data *d);
 
 /***
  * Pop's data from the top
  */
-void queuePop(queue *s);
+data *queuePop(queue *s);
 
 /***
  * Print the data from the queue
