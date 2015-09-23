@@ -116,7 +116,7 @@ bool delete(node *root, int valueIn){
 			parentNode->right = NULL;
 		}
 	}
-	
+
 	//Case 2: Delete the node with one child 
 	else if((currNode->left == NULL && currNode->right != NULL) || (currNode->left != NULL && currNode->right == NULL)){
 		if(currNode->left){
@@ -124,19 +124,41 @@ bool delete(node *root, int valueIn){
 				root = currNode->left;
 				freePtr(currNode);
 			} else {
-
+				parentNode->left = currNode->left;
+				freePtr(currNode);
 			}
 		} else {
 			if(currNode==root){
 				root = currNode->right;
 				freePtr(currNode);
 			} else {
-
+				parentNode->right = currNode->right;
+				freePtr(currNode);
 			}
 		}
 	}
 	//Case 3: Delete the node with two child
-	
+	else if(currNode->left != NULL && currNode->right != NULL){
+		node *leftNode = currNode->left;
+
+		if(leftNode->left==NULL){
+			currNode->dataPtr->value = leftNode->dataPtr->value;
+			freePtr(leftNode);
+			currNode->left = NULL;
+		} else {
+			node *templeft = leftNode;
+			node *tempprevleft = leftNode;
+			while(templeft){
+				if(templeft->left == NULL)
+					break;
+				tempprevleft = templeft;
+				templeft = templeft->left;
+			}
+			currNode->dataPtr->value = tempprevleft->dataPtr->value;
+			freePtr(tempprevleft);
+		}
+	}
+	return true;
 }
 
 /**
