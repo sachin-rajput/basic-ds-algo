@@ -147,6 +147,7 @@ bool delete(node *root, int valueIn){
 			currNode->left = NULL;
 		} else {
 			node *templeft = leftNode;
+			node *tempparentleft = leftNode;
 			node *tempprevleft = leftNode;
 			while(templeft){
 				if(templeft->left == NULL)
@@ -154,8 +155,9 @@ bool delete(node *root, int valueIn){
 				tempprevleft = templeft;
 				templeft = templeft->left;
 			}
-			currNode->dataPtr->value = tempprevleft->dataPtr->value;
-			freePtr(tempprevleft);
+			currNode->dataPtr->value = templeft->dataPtr->value;
+			tempprevleft->left = NULL;
+			freePtr(templeft);
 		}
 	}
 	return true;
