@@ -16,16 +16,19 @@ typedef enum { false, true } bool;
 /***
  * Data structure for the data to be stored in
  * the nodes of Tree
+ * Each data also has height, default height is -1
  */
 typedef struct {
 	int value;
+	int height;
 } data;
 
 /***
- * Node which will store left and right pointer,
+ * Node which will store parent, left and right pointer,
  * along with a data pointer
  */
 typedef struct nodePtr {
+	struct nodePtr *parent;
 	struct nodePtr *left;
 	struct nodePtr *right;
 	data *dataPtr;
@@ -54,16 +57,17 @@ node *createNode(data *newDataIn);
  */
 data *createData(int valueIn);
 
-/**
- * Inserts a data supplied
- */
-void insert(tree *bst, int value);
 
 /**
- * Insert helper for inserting a node in tree 
+ * Inserts a node in tree 
  * This will be a recursive function
  */
-void insert_helper(node *currNode, data *newDataIn);
+node *insert(node *currNode, int valueIn);
+
+/**
+ * 
+ */
+int getBalance(node *N);
 
 /**
  * Compare dataPtr 
@@ -104,10 +108,22 @@ bool search(node *root, int valueIn);
 int height(node *nodeIn);
 
 
+int max(int a, int b);
+
 /**
- * Checks if the supplied tree is Binary Search Tree
+ * Rotation for right rotation
  */
-bool isBST(node *nodeIn, int minData, int maxData);
+node *rightRotate(node *y);
+
+/**
+ * Rotation for left rotation
+ */
+node *leftRotate(node *x);
+
+/**
+ * Checks if the supplied tree is balanced tree
+ */
+bool isBalanced(node *nodeIn);
 
 /**
 * Print In-order 
