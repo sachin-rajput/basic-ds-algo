@@ -1,6 +1,6 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-
+ 
 
 #define DEBUG 1
 /***
@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+typedef enum { false, true } bool;
 
 /***
  * Data structure for the data to be stored in
@@ -25,7 +27,7 @@ typedef struct {
  */
 typedef struct nodePtr {
 	struct nodePtr *left;
-	struct nodePtr *prev;
+	struct nodePtr *right;
 	data *dataPtr;
 } node;
 
@@ -55,7 +57,7 @@ data *createData(int valueIn);
 /**
  * Inserts a data supplied
  */
-void insert(tree *bst, data *newDataIn);
+void insert(tree *bst, int value);
 
 /**
  * Insert helper for inserting a node in tree 
@@ -77,7 +79,12 @@ int compare_int(int a,int b);
 /**
  * Deletes the node with the int value supplied
  */
-bool delete(node *root, int valueIn);
+bool delete(tree *bst, int valueIn);
+
+/**
+ * Clears the tree
+ */
+void clearTree(node *root);
 
 /**
  * Free the pointers 
@@ -98,9 +105,24 @@ int height(node *nodeIn);
 
 
 /**
- * Checks if the supplied tree is balanced
+ * Checks if the supplied tree is Binary Search Tree
  */
-bool isBalanced(node *root);
+bool isBST(node *nodeIn, int minData, int maxData);
+
+/**
+* Print In-order 
+*/
+void inOrder(node *root);
+
+/**
+* Print In-order 
+*/
+void preOrder(node *root);
+
+/**
+* Print In-order 
+*/
+void postOrder(node *root);
 
 
 #endif
